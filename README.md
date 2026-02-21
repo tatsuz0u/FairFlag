@@ -44,7 +44,8 @@ import FairFlag
   
 let emoji = "TW".toFlagEmoji() // "🇹🇼"
 
-let flagImage = FairFlag.image(countryCode: "TW")?
+let flagImage =
+FairFlag.image(countryCode: "TW")?
   .resizable()
   .frame(width: 20, height: 20)
 ```
