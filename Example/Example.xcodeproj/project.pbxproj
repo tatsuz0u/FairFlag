@@ -68,6 +68,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A6297C5E2F4A11E6002DD49A /* ExampleShared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ExampleShared; sourceTree = "<group>"; };
 		A62A6AF92F499E8400473894 /* ExampleWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExampleWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A62A6C112F49A4C800473894 /* SnapshotWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnapshotWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A62A6C202F49A58300473894 /* ExampleWatchTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ExampleWatchTests.xctestplan; sourceTree = "<group>"; };
@@ -80,8 +81,6 @@
 		A62A6C122F49A4C800473894 /* Exceptions for "SnapshotTests" folder in "SnapshotWatchTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				__Snapshots__/SnapshotTests/fairFlagPreviews.FairFlag_Previews_iPad.png,
-				__Snapshots__/SnapshotTests/fairFlagPreviews.FairFlag_Previews_iPhone.png,
 				__Snapshots__/SnapshotTests/fairFlagPreviews.FairFlag_Previews_TV.png,
 				SnapshotTests.swift,
 			);
@@ -167,8 +166,9 @@
 		A68BD1A52F49877100DB9D52 = {
 			isa = PBXGroup;
 			children = (
-				A62A6C202F49A58300473894 /* ExampleWatchTests.xctestplan */,
+				A6297C5E2F4A11E6002DD49A /* ExampleShared */,
 				A68BD40E2F49988500DB9D52 /* ExampleTests.xctestplan */,
+				A62A6C202F49A58300473894 /* ExampleWatchTests.xctestplan */,
 				A68BD1B02F49877100DB9D52 /* ExampleApp */,
 				A68BD1EB2F4996D100DB9D52 /* SnapshotTests */,
 				A62A6C1A2F49A51A00473894 /* SnapshotWatchTests */,

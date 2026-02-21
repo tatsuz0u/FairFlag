@@ -77,11 +77,11 @@ private func currentDeviceModel() -> String {
     #elseif os(visionOS)
     "Vision"
     #elseif os(iOS)
-    UIDevice.current.userInterfaceIdiom == .phone
-        ? "iPhone"
-        : UIDevice.current.userInterfaceIdiom == .pad
-            ? "iPad"
-            : "Unknown"
+    switch UIDevice.current.userInterfaceIdiom {
+    case .phone: "Phone"
+    case .pad: "Pad"
+    default: "Unknown"
+    }
     #else
     "Unknown"
     #endif
