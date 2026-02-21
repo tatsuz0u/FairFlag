@@ -4,7 +4,12 @@ private let nativeEmojiSize: CGFloat = 160
 
 public enum FairFlag {
     public static func image(countryCode: String) -> Image? {
+        #if os(watchOS)
+        let flag = countryCode.toFlagEmoji().flatMap(Image.init(emoji:))
+        #else
         let flag = countryCode.toFlagEmoji().map(Image.init(emoji:))
+        #endif
+
         #if os(iOS)
         return countryCode.uppercased() == "TW" ? Image("ROC", bundle: .module) : flag
         #else
@@ -30,23 +35,36 @@ public extension String {
 }
 
 private extension Image {
+    #if os(iOS) || os(tvOS) || os(macOS) || os(visionOS)
     init(emoji: String) {
         let osImage = emoji.render(size: nativeEmojiSize)
 
-        #if os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
-        if let cgImage = osImage.cgImage {
-            self.init(cgImage, scale: 1, label: Text(emoji))
-        } else {
-            self.init(uiImage: osImage)
-        }
-        #elseif os(macOS)
+        #if os(macOS)
         if let cgImage = osImage.cgImage(forProposedRect: nil, context: nil, hints: nil) {
             self.init(cgImage, scale: 1, label: Text(emoji))
         } else {
             self.init(nsImage: osImage)
         }
+        #else
+        if let cgImage = osImage.cgImage {
+            self.init(cgImage, scale: 1, label: Text(emoji))
+        } else {
+            self.init(uiImage: osImage)
+        }
         #endif
     }
+    #elseif os(watchOS)
+    init?(emoji: String) {
+        guard let osImage = emoji.render(size: nativeEmojiSize) else {
+            return nil
+        }
+        if let cgImage = osImage.cgImage {
+            self.init(cgImage, scale: 1, label: Text(emoji))
+        } else {
+            self.init(uiImage: osImage)
+        }
+    }
+    #endif
 }
 
 private extension String {
@@ -63,17 +81,16 @@ private extension String {
         }
     }
     #elseif os(watchOS)
-    func render(size: CGFloat) -> UIImage {
+    func render(size: CGFloat) -> UIImage? {
         let font = UIFont.systemFont(ofSize: size)
         let cgSize = CGSize(width: size, height: size)
         UIGraphicsBeginImageContext(cgSize)
         defer { UIGraphicsEndImageContext() }
-        let context = UIGraphicsGetCurrentContext()!
         self.draw(
             at: CGPoint(x: -5.5 * (size / nativeEmojiSize), y: -16 * (size / nativeEmojiSize)),
             withAttributes: [.font: font]
         )
-        return UIGraphicsGetImageFromCurrentImageContext()!
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
     #elseif os(macOS)
     func render(size: CGFloat) -> NSImage {
