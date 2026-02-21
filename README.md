@@ -10,11 +10,10 @@
 
 ## Background
 
-In some CN region iPhone environments, the Taiwan flag emoji can fail to render. `FairFlag` solves this by:
+On China-model iPhone and iPad devices, the Taiwan flag emoji may not render correctly. To keep behavior consistent for those cases, FairFlag uses a fixed rule for `TW`.
 
-- Rendering `TW` from an included ROC image asset.
-- Keeping all other country codes on normal emoji-based rendering.
-
+- On iOS and iPadOS, when the country code is `TW`, FairFlag always uses the bundled ROC image asset.
+- For all other country codes, FairFlag keeps normal emoji-based rendering.
 
 ## Features
 
@@ -23,12 +22,12 @@ In some CN region iPhone environments, the Taiwan flag emoji can fail to render.
 
 ## Requirements
 
-- Swift 5.3
-- iOS 13.0
-- watchOS 6.0
-- tvOS 13.0
-- macOS 10.15
-- visionOS 1.0
+- Swift 5.3+
+- iOS 13.0+
+- watchOS 6.0+
+- tvOS 13.0+
+- macOS 10.15+
+- visionOS 1.0+
 
 ## Usage
 
