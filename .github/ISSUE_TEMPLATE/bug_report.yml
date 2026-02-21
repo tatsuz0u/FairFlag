@@ -1,0 +1,75 @@
+name: Bug Report
+description: Share a bug so we can investigate and fix it
+title: "[BUG] "
+labels: [bug]
+body:
+- type: markdown
+  attributes:
+    value: |
+      Thanks for helping improve FairFlag.
+      
+      Please fill in the sections below and complete the checklist before submitting.
+- type: textarea
+  attributes:
+    label: Description
+    description: |
+      Summarize the issue and what seems wrong. Add screenshots when helpful.
+
+      If this is a regression, include the last known good version and the version where it started.
+  validations:
+    required: true
+- type: checkboxes
+  attributes:
+    label: Checklist
+    options:
+    - label: If possible, I reproduced this with the latest package version.
+      required: false
+    - label: I checked [existing issues](https://github.com/tatsuz0u/FairFlag/issues) and didn’t find a duplicate.
+      required: true
+- type: textarea
+  attributes:
+    label: Expected behavior
+    description: Describe what you expected to happen.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Actual behavior
+    description: Describe what happens now (or paste logs/output).
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Reproduction steps
+    description: |
+      List clear steps someone else can follow to reproduce the issue.
+
+      Reports without reproducible steps may be moved to a discussion until more details are provided.
+    placeholder: |
+      1. Go to '...'
+      2. Click on '....'
+      3. Scroll down to '....'
+      4. See error
+  validations:
+    required: true
+- type: input
+  attributes:
+    label: FairFlag version information
+    description: FairFlag package version used when reproducing this issue.
+    placeholder: "'1.0.0' for example"
+  validations:
+    required: true
+- type: input
+  attributes:
+    label: Destination operating system
+    description: OS where the issue occurs.
+    placeholder: "'iPadOS 26' for example"
+  validations:
+    required: true
+- type: input
+  attributes:
+    label: Destination device
+    description: Device where the issue occurs.
+    placeholder: "'Apple Vision Pro' for example"
+  validations:
+    required: true

@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "1B823810-159F-4099-B772-0F22BE6E860B",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Example.xcodeproj",
+        "identifier" : "A62A6C032F49A4C800473894",
+        "name" : "SnapshotWatchTests"
+      }
+    }
+  ],
+  "version" : 1
+}

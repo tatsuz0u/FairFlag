@@ -1,0 +1,50 @@
+name: Snapshot Tests
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+env:
+  DEVELOPER_DIR: /Applications/Xcode_26.2.app
+
+jobs:
+  snapshot-tests:
+    runs-on: macos-26
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform_name: iOS
+            scheme: Example
+            test_plan: ExampleTests
+            destination: platform=iOS Simulator,name=iPhone Air,OS=26.2
+          - platform_name: watchOS
+            scheme: ExampleWatch Watch App
+            test_plan: ExampleWatchTests
+            destination: id=A613BA96-F0AA-4EA5-BA77-C25CB656CF0C
+          - platform_name: tvOS
+            scheme: Example
+            test_plan: ExampleTests
+            destination: platform=tvOS Simulator,name=Apple TV 4K (3rd generation),OS=26.2
+          - platform_name: macOS
+            scheme: Example
+            test_plan: ExampleTests
+            destination: platform=macOS,arch=arm64
+          - platform_name: visionOS
+            scheme: Example
+            test_plan: ExampleTests
+            destination: platform=visionOS Simulator,name=Apple Vision Pro,OS=26.2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Run tests
+        run: |
+          set -euo pipefail
+          echo "Running ${{ matrix.platform_name }} snapshot tests"
+          xcodebuild clean test \
+            -skipMacroValidation \
+            -project "Example/Example.xcodeproj" \
+            -scheme "${{ matrix.scheme }}" \
+            -testPlan "${{ matrix.test_plan }}" \
+            -destination "${{ matrix.destination }}"
