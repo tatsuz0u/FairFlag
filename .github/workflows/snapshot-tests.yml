@@ -1,0 +1,25 @@
+name: Snapshot Tests
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+env:
+  SCHEME_NAME: 'Example'
+  DEVELOPER_DIR: /Applications/Xcode_26.2.app
+
+jobs:
+  snapshot-tests:
+    runs-on: macos-26
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Show Xcode version
+        run: xcodebuild -version
+      - name: Run tests
+        run: xcodebuild clean test
+          -skipMacroValidation
+          -scheme ${{ env.SCHEME_NAME }}
+          -destination 'platform=iOS Simulator,name=iPhone Air'
