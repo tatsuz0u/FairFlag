@@ -4,7 +4,7 @@
 
 <p align="center">
 <picture>
-<img src="FairFlag.png" width="512" alt="BitRemote app icon.">
+<img src=".github/images/Logo.png" width="512" alt="BitRemote app icon.">
 </picture>
 </p>
 
