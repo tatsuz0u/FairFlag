@@ -19,10 +19,6 @@ jobs:
             scheme: Example
             test_plan: ExampleTests
             destination: platform=iOS Simulator,name=iPhone Air,OS=26.2
-          - platform_name: watchOS
-            scheme: ExampleWatch Watch App
-            test_plan: ExampleWatchTests
-            destination: id=A613BA96-F0AA-4EA5-BA77-C25CB656CF0C
           - platform_name: tvOS
             scheme: Example
             test_plan: ExampleTests
@@ -48,3 +44,22 @@ jobs:
             -scheme "${{ matrix.scheme }}" \
             -testPlan "${{ matrix.test_plan }}" \
             -destination "${{ matrix.destination }}"
+  snapshot-watchos-tests:
+    runs-on: macos-26
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Run tests
+        uses: nick-fields/retry@v3
+        with:
+          retry_on: error
+          max_attempts: 5
+          timeout_minutes: 10
+          command: |
+            xcodebuild clean test \
+              -skipMacroValidation \
+              -project "Example/Example.xcodeproj" \
+              -scheme "ExampleWatch Watch App" \
+              -testPlan "ExampleWatchTests" \
+              -destination "id=A613BA96-F0AA-4EA5-BA77-C25CB656CF0C"
