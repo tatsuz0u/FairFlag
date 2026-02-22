@@ -9,6 +9,7 @@ env:
 
 jobs:
   snapshot-tests:
+    name: ${{ matrix.check_name }}
     runs-on: macos-26
     timeout-minutes: 30
     strategy:
@@ -16,18 +17,22 @@ jobs:
       matrix:
         include:
           - platform_name: iOS
+            check_name: snapshot-ios-tests
             scheme: Example
             test_plan: ExampleTests
             destination: platform=iOS Simulator,name=iPhone Air,OS=26.2
           - platform_name: tvOS
+            check_name: snapshot-tvos-tests
             scheme: Example
             test_plan: ExampleTests
             destination: platform=tvOS Simulator,name=Apple TV 4K (3rd generation),OS=26.2
           - platform_name: macOS
+            check_name: snapshot-macos-tests
             scheme: Example
             test_plan: ExampleTests
             destination: platform=macOS,arch=arm64
           - platform_name: visionOS
+            check_name: snapshot-visionos-tests
             scheme: Example
             test_plan: ExampleTests
             destination: platform=visionOS Simulator,name=Apple Vision Pro,OS=26.2
@@ -45,6 +50,7 @@ jobs:
             -testPlan "${{ matrix.test_plan }}" \
             -destination "${{ matrix.destination }}"
   snapshot-watchos-tests:
+    name: snapshot-watchos-tests
     runs-on: macos-26
     timeout-minutes: 30
     steps:
