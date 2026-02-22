@@ -21,6 +21,11 @@ jobs:
             scheme: Example
             test_plan: ExampleTests
             destination: platform=iOS Simulator,name=iPhone Air,OS=26.2
+          - platform_name: iPadOS
+            check_name: snapshot-ipados-tests
+            scheme: Example
+            test_plan: ExampleTests
+            destination: platform=iOS Simulator,name=iPad Pro 11-inch (M5),OS=26.2
           - platform_name: tvOS
             check_name: snapshot-tvos-tests
             scheme: Example

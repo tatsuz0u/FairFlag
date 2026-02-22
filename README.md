@@ -24,6 +24,7 @@ On China-model iPhone and iPad devices, the Taiwan flag emoji may not render cor
 
 - Swift 5.3+
 - iOS 13.0+
+- iPadOS 13.0+
 - watchOS 6.0+
 - tvOS 13.0+
 - macOS 10.15+
