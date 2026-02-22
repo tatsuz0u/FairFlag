@@ -16,6 +16,16 @@ public enum FairFlag {
         return flag
         #endif
     }
+
+    #if os(iOS)
+    public static func image(emoji: String) -> Image {
+        emoji == "🇹🇼" ? Image("ROC", bundle: .module) : .init(emoji: emoji)
+    }
+    #elseif os(tvOS) || os(macOS) || os(visionOS)
+    public static func image(emoji: String) -> Image { .init(emoji: emoji) }
+    #elseif os(watchOS)
+    public static func image(emoji: String) -> Image? { .init(emoji: emoji) }
+    #endif
 }
 
 public extension String {

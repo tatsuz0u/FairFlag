@@ -18,7 +18,8 @@ On China-model iPhone and iPad devices, the Taiwan flag emoji may not render cor
 ## Features
 
 - Convert ISO country codes to flag emoji (`String.toFlagEmoji()`).
-- Render emoji flags as SwiftUI `Image` (`FairFlag.image(countryCode:)`).
+- Render an emoji string as a SwiftUI `Image` (`FairFlag.image(emoji:)`).
+- Render a country code as a SwiftUI `Image` (`FairFlag.image(countryCode:)`).
 
 ## Requirements
 
@@ -43,10 +44,12 @@ In a SwiftUI view:
 ```swift
 import FairFlag
   
-let emoji = "TW".toFlagEmoji() // "🇹🇼"
+let emoji = "TW".toFlagEmoji()
 
-let flagImage =
+let countryCodeImage =
 FairFlag.image(countryCode: "TW")?
   .resizable()
   .frame(width: 20, height: 20)
+
+let emojiImage = FairFlag.image(emoji: "🇹🇼")
 ```
