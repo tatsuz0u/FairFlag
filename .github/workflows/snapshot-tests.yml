@@ -62,7 +62,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Run tests
-        uses: nick-fields/retry@v3
+        uses: nick-fields/retry@v4
         with:
           retry_on: error
           max_attempts: 5
