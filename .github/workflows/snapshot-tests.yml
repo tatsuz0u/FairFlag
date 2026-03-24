@@ -5,7 +5,7 @@ on:
     branches: ["main"]
   pull_request:
 env:
-  DEVELOPER_DIR: /Applications/Xcode_26.2.app
+  DEVELOPER_DIR: /Applications/Xcode_26.3.app
 
 jobs:
   snapshot-tests:
@@ -41,9 +41,13 @@ jobs:
             scheme: Example
             test_plan: ExampleTests
             destination: platform=visionOS Simulator,name=Apple Vision Pro,OS=26.2
+            download_platform: visionOS
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Download platform
+        if: matrix.download_platform
+        run: xcodebuild -downloadPlatform ${{ matrix.download_platform }}
       - name: Run tests
         run: |
           set -euo pipefail
@@ -62,7 +66,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Run tests
-        uses: nick-fields/retry@v3
+        uses: nick-fields/retry@v4
         with:
           retry_on: error
           max_attempts: 5
@@ -73,4 +77,4 @@ jobs:
               -project "Example/Example.xcodeproj" \
               -scheme "ExampleWatch Watch App" \
               -testPlan "ExampleWatchTests" \
-              -destination "id=A613BA96-F0AA-4EA5-BA77-C25CB656CF0C"
+              -destination "id=E912FEC6-B55E-4FE1-BFEC-66D017327B0E"
